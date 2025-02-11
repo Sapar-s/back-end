@@ -16,7 +16,7 @@ let movies = [];
 
 const addUser = (moviesData) => {
   movies.push(moviesData);
-  console.log(movies);
+  console.log("movies => ", movies);
 };
 
 app.post("/movies", (req, res) => {
@@ -29,9 +29,16 @@ app.get("/movies", (req, res) => {
   res.send(movies);
 });
 
-// app.put("/movies", function(req,res){
-//   const {}
-// })
+app.put("/movies", function (req, res) {
+  const { name, id } = req.body;
+  const movie = movies.find((movie) => movie.id);
+  if (movie === id) {
+    // movie = name;
+    res.send("succesfully edited");
+  } else {
+    res.send("sorry don't edited");
+  }
+});
 
 app.delete("/movies", function (req, res) {
   const { id } = req.body;
